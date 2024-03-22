@@ -16,25 +16,20 @@ public class NavBarTests : PageTest
         await Page.GotoAsync("https://everykey.com");
 
         // Expect a title "to contain" a substring.
-        Page.Locator(".nav-link").GetByText("Home");
-        await Expect(Page.GetByRole(AriaRole.Link).GetByText("Home").First).ToHaveAttributeAsync("href", "https://everykey.com/enterprise");
-        //await Expect(Page).ToHaveURLAsync("https://everykey.com/enterprise");
+        await Expect(Page.GetByRole(AriaRole.Link).GetByText("Home").First).ToHaveAttributeAsync("href", "/enterprise");
+        await Expect(Page.GetByRole(AriaRole.Link).GetByText("Product").First).ToHaveAttributeAsync("href", "/enterprise/product");
+        await Expect(Page.GetByRole(AriaRole.Link).GetByText("Security").First).ToHaveAttributeAsync("href", "/security");
+        await Expect(Page.GetByRole(AriaRole.Link).GetByText("Support").First).ToHaveAttributeAsync("href", "/support");
+        await Expect(Page.GetByRole(AriaRole.Link).GetByText("Setup").First).ToHaveAttributeAsync("href", "/setup");
+        await Expect(Page.GetByRole(AriaRole.Link).GetByText("Account").First).ToHaveAttributeAsync("href", "/account/login");
+        await Expect(Page.GetByRole(AriaRole.Link).GetByText("Shop").First).ToHaveAttributeAsync("href", "https://dashboard.everykey.com/shop");
 
-        //page.locator(".nav-link").getbytext("Product");
-        //await expect(page).toHaveURL("https://everykey.com/enterprise/product");
-
-        //page.locator(".nav-link").getbytext("Security");
-        //await expect(page).toHaveURL("https://everykey.com/security");
-
-        //page.locator(".nav-link").getbytext("Support");
-        ///await Expect(page).toHaveURL("https://everykey.com/support");
-
-        //page.locator(".nav-link").getbytext("Setup");
-        //await expect(page).toHaveURL("https://everykey.com/setup");
+        // Can access both of these webpages, but they do not have them on the main page in the navbar
+        //await Expect(Page.GetByRole(AriaRole.Link).GetByText("Tech Specs").First).ToHaveAttributeAsync("href", "/tech-specs");
+        //await Expect(Page.GetByRole(AriaRole.Link).GetByText("Reviews").First).ToHaveAttributeAsync("href", "/reviews");
 
         // create a locator
-        var getStarted = Page.Locator(".button-CTA").First;
-        getStarted.ClickAsync();
+
 
     
         // Expects the URL to contain intro.

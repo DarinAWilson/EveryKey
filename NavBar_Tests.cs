@@ -25,7 +25,7 @@ public class NavBarTests : PageTest
         await Expect(Page.GetByRole(AriaRole.Link).GetByText("Shop").First).ToHaveAttributeAsync("href", "https://dashboard.everykey.com/shop");
 
         // Can access both of these webpages, but they do not have them on the main page in the navbar
-        //await Expect(Page.GetByRole(AriaRole.Link).GetByText("Tech Specs").First).ToHaveAttributeAsync("href", "/tech-specs");
+        //await Expect(Page.GetByRole(AriaRole.Link).ToByText("Tech Specs").First).ToHaveAttributeAsync("href", "/tech-specs");
         //await Expect(Page.GetByRole(AriaRole.Link).GetByText("Reviews").First).ToHaveAttributeAsync("href", "/reviews");
 
         // create a locator

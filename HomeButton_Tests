@@ -35,7 +35,30 @@ public class Tests : PageTest
         await Page.GotoAsync("https://everykey.com");
 
         await page.GetByRole(AriaRole.Button, new() { Name = "Learn More" }).ClickAsync();
-        await Expect(Page).ToHaveURLAsync("https://dashboard.everykey.com/getting-started");
+        await Expect(Page).ToHaveURLAsync("https://everykey.com/enterprise/product");
+
+        await Page.GotoAsync("https://everykey.com");
+
+        await page.GetByRole(AriaRole.Button, new() { Name = "facebook.com/everykey" }).ClickAsync();
+        await Expect(Page).ToHaveURLAsync("https://www.facebook.com/Everykey/");
+
+        await page.GetByRole(AriaRole.Button, new() { Name = "instagram.com/everykey" }).ClickAsync();
+        await Expect(Page).ToHaveURLAsync("https://www.instagram.com/Everykey/");
+
+        await page.GetByRole(AriaRole.Button, new() { Name = "youtube.com/c/everykey" }).ClickAsync();
+        await Expect(Page).ToHaveURLAsync("https://www.youtube.com/c/Everykey/");
+
+        await page.GetByRole(AriaRole.Button, new() { Name = "linkedin.com/company/everykey" }).ClickAsync();
+        await Expect(Page).ToHaveURLAsync("https://www.linkedin.com/company/everykey/");
+
+        await page.GetByRole(AriaRole.Button, new() { Name = "linkedin.com/company/everykey" }).ClickAsync();
+        await Expect(Page).ToHaveURLAsync("https://www.linkedin.com/company/everykey/");
+
+        // Still has the old twitter web address, only has the img source in devtools
+        // await page.GetByRole(AriaRole.Button, new() { Name = "twitter.com/everykey" }).ClickAsync();
+        // await Expect(Page).ToHaveURLAsync("https://twitter.com/i/flow/login?redirect_after_login=%2FEverykey");
+
+        
 
     }
 }

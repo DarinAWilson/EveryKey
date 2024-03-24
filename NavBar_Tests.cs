@@ -17,6 +17,11 @@ public class NavBarTests : PageTest
 
         // Expect a title "to contain" a substring.
         await Expect(Page.GetByRole(AriaRole.Link).GetByText("Home").First).ToHaveAttributeAsync("href", "/enterprise");
+        //         var getStarted = Page.Locator(".button-CTA").First;
+        //         getStarted.ClickAsync();
+
+        // await Expect(Page).ToHaveURLAsync("https://dashboard.everykey.com/getting-started");
+
         await Expect(Page.GetByRole(AriaRole.Link).GetByText("Product").First).ToHaveAttributeAsync("href", "/enterprise/product");
         await Expect(Page.GetByRole(AriaRole.Link).GetByText("Security").First).ToHaveAttributeAsync("href", "/security");
         await Expect(Page.GetByRole(AriaRole.Link).GetByText("Support").First).ToHaveAttributeAsync("href", "/support");
@@ -24,9 +29,10 @@ public class NavBarTests : PageTest
         await Expect(Page.GetByRole(AriaRole.Link).GetByText("Account").First).ToHaveAttributeAsync("href", "/account/login");
         await Expect(Page.GetByRole(AriaRole.Link).GetByText("Shop").First).ToHaveAttributeAsync("href", "https://dashboard.everykey.com/shop");
 
-        // Can access both of these webpages, but they do not have them on the main page in the navbar
-        //await Expect(Page.GetByRole(AriaRole.Link).ToByText("Tech Specs").First).ToHaveAttributeAsync("href", "/tech-specs");
-        //await Expect(Page.GetByRole(AriaRole.Link).GetByText("Reviews").First).ToHaveAttributeAsync("href", "/reviews");
+        // Hidden page Navigation
+        await Page.GotoAsync("https://everykey.com/tech-specs");
+       
+        await Page.GotoAsync("https://everykey.com/reviews");
 
         // create a locator
 

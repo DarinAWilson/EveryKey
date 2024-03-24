@@ -1,0 +1,41 @@
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using Microsoft.Playwright;
+using Microsoft.Playwright.NUnit;
+using NUnit.Framework;
+
+namespace NewEveryKey;
+
+[Parallelizable(ParallelScope.Self)]
+[TestFixture]
+public class Tests : PageTest
+{
+    [Test]
+    public async Task HomepageTests()
+    {
+        await Page.GotoAsync("https://everykey.com");
+
+        // Expect a title "to contain" a substring.
+        await Expect(Page).ToHaveTitleAsync(new Regex("Everykey - No more Passwords, No more Keys"));
+
+        // finding button and clicking it
+        await page.GetByRole(AriaRole.Button, new() { Name = "Get Started" }).ClickAsync();
+
+    
+        // Expects the URL to contain
+        await Expect(Page).ToHaveURLAsync("https://dashboard.everykey.com/getting-started");
+
+        await Page.GotoAsync("https://everykey.com");
+
+        var bookADemo = Page.Locator(".button-Secondary2").First;
+        bookADemo.ClickAsync();
+
+        await Expect(Page).ToHaveURLAsync("https://app.apollo.io/#/meet/1012/30-min");
+
+        await Page.GotoAsync("https://everykey.com");
+
+        await page.GetByRole(AriaRole.Button, new() { Name = "Learn More" }).ClickAsync();
+        await Expect(Page).ToHaveURLAsync("https://dashboard.everykey.com/getting-started");
+
+    }
+}
